@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Prijava za registraciju dodatka prehrani</title>
+<link rel="stylesheet" href="{% static 'preparat/styles.css' %}">
+<style>
+/* ===== Osnovni stil ===== */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 950px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px 40px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ===== Fieldset stil ===== */
+fieldset {
+    border: 1px solid #bbb;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #eafcde;
+    border-radius: 6px;
+}
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+    color: #050505;
+    font-size: 20px;
+}
+
+/* ===== Polja i fleks raspored ===== */
+.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+input[type="text"], input[type="number"], select {
+    width: 220px;
+    padding: 6px 10px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+}
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    border-color: #003366;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 51, 102, 0.2);
+}
+
+/* ===== Checkbox stil ===== */
+.checkbox-group p {
+    margin: 4px 0;
+}
+.sub-checkbox {
+    margin-left: 20px;
+    transition: all 0.2s ease;
+}
+.hidden {
+    display: none;
+}
+
+/* ===== Kartice za formsetove ===== */
+.card {
+    border: 1px solid #aaa;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    background-color: #f0fff0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* ===== Dugmad ===== */
+button {
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+button:hover {
+    background-color: #002244;
+}
+.add-btn {
+    background-color: #006600;
+    margin-top: 10px;
+}
+.add-btn:hover {
+    background-color: #004400;
+}
+
+/* ===== Napomene ===== */
+.note, .help-text {
+    font-size: 12px;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* ===== BSE/GMO radio i box ===== */
+#bseBox {
+    margin-left: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Prijava za registraciju dodatka prehrani</h1>
+
+<form method="post">
+{% csrf_token %}
+
+<!-- ===== 1. Osnovni podaci ===== -->
+<fieldset>
+<legend>1. Osnovni podaci o proizvodu</legend>
+<p>Naziv proizvoda:<br>{{ form.naziv }}</p>
+<p>Farmaceutski oblik:<br>{{ form.oblik }}</p>
+<p>Neto količina pakovanja:<br>
+    <div class="flex-row">{{ form.neto_kolicina }} {{ form.jedinica_kolicina }}</div>
+</p>
+</fieldset>
+
+<!-- ===== 2. Ambalaža i čuvanje ===== -->
+<fieldset>
+<legend>2. Ambalaža i čuvanje</legend>
+<p>Tip ambalaže:<br>{{ form.tip_ambalaze }}</p>
+<p>Materijal ambalaže:<br>{{ form.materijal_ambalaze }}</p>
+<p>{{ form.zastita_svjetlost }} Zaštićeno od svetlosti</p>
+<p>{{ form.zastita_vlaga }} Zaštićeno od vlage</p>
+<p>Min. temperatura čuvanja: {{ form.temp_min }}</p>
+<p>Max. temperatura čuvanja: {{ form.temp_max }}</p>
+</fieldset>
+
+<!-- ===== 3. Namjena i način primjene ===== -->
+<fieldset>
+<legend>3. Namjena i način primjene</legend>
+<p>Zdravstvene izjave:<br>{{ form.namena }}</p>
+<p>Dnevna doza:<br>
+    <div class="flex-row">{{ form.doza }} {{ form.jedinica_doza }}</div>
+</p>
+<p>Način primjene:<br>{{ form.nacin_uzimanja }}</p>
+</fieldset>
+
+<!-- ===== 4. Ograničenja i upozorenja ===== -->
+<fieldset>
+<legend>4. Ograničenja i upozorenja</legend>
+
+<p>{{ form.ogranicenja_toggle }} Postoje ograničenja upotrebe</p>
+<div id="ogranicenjaBox" class="hidden checkbox-group sub-checkbox">
+    <p>{{ form.ogranicenja_djeca }} Djeca</p>
+    <p>{{ form.ogranicenja_trudnice }} Trudnice</p>
+    <p>{{ form.ogranicenja_dojilje }} Dojilje</p>
+    <p>{{ form.ogranicenja_hronicni }} Hronični</p>
+</div>
+
+<p>{{ form.mjere_toggle }} Mjere opreza</p>
+<div id="mjereBox" class="hidden checkbox-group sub-checkbox">
+    <p>{{ form.mjera_djeca }} Čuvati van domašaja djece</p>
+    <p>{{ form.mjera_doziranje }} Ne prekoračiti dnevnu dozu</p>
+    <p>{{ form.mjera_zamjena }} Nije zamjena za ishranu</p>
+    <p>{{ form.mjera_obrok }} Preporučuje se uz obrok</p>
+    <p>{{ form.mjera_skladistenje }} Čuvati na suvom i tamnom mjestu</p>
+</div>
+
+<p>{{ form.upozorenja_toggle }} Upozorenja</p>
+<div id="upozorenjaBox" class="hidden checkbox-group sub-checkbox">
+    <p>{{ form.upozorenje_alergije }} Mogu alergije</p>
+    <p>{{ form.upozorenje_lijekovi }} Mogu interakcije sa lijekovima</p>
+    <p>{{ form.upozorenje_gi }} GI smetnje</p>
+    <p>{{ form.upozorenje_pritisak }} Uticaj na krvni pritisak</p>
+    <p>{{ form.upozorenje_secer }} Uticaj na šećer</p>
+</div>
+
+<p>
+BSE i TSE sertifikati potvrđuju da biljni dodatak ne sadrži rizik od priona životinjskog porijekla.<br>
+GMO certifikat potvrđuje da proizvod ne sadrži genetski modificirane organizme.
+</p>
+<p>{{ form.bse_toggle }}</p>
+<div id="bseBox" class="hidden sub-checkbox">{{ form.bse_napomena }}</div>
+</fieldset>
+
+<!-- ===== 5. Biljna droga ===== -->
+<fieldset id="biljna-container">
+<legend>5. Biljna droga</legend>
+{{ droge_formset.management_form }}
+{% for f in droge_formset %}
+<div class="biljna-droga card">
+    <p>SR: {{ f.biljka_sr }}</p>
+    <p>Latinski: {{ f.biljka_lat }}</p>
+    <p>Dio biljke: {{ f.dio_biljke }}</p>
+    <p>Stanje biljke: {{ f.stanje_biljke }}</p>
+    <p>Rastvarač: {{ f.rastvarac }}</p>
+    <p>DER: {{ f.der }}</p>
+    <div class="flex-row">{{ f.standardizacija_proc }} % {{ f.standardizacija_supstanca }}</div>
+    <p>Zemlja: {{ f.zemlja_porijekla }}</p>
+    <p>Količina: {{ f.kolicina_biljna }} {{ f.jedinica_biljna }}</p>
+</div>
+{% endfor %}
+<button type="button" class="add-btn" onclick="addFormset('biljna')">Dodaj još biljnu drogu</button>
+</fieldset>
+
+<!-- ===== 6. Aktivne supstance ===== -->
+<fieldset id="aktivna-container">
+<legend>6. Aktivne supstance</legend>
+{{ supstance_formset.management_form }}
+{% for f in supstance_formset %}
+<div class="aktivna-supstanca card">
+    <p>Naziv: {{ f.naziv }}</p>
+    <p>Hemijski oblik: {{ f.hemijski_oblik }}</p>
+    <p>Količina: {{ f.kolicina }} {{ f.jedinica }}</p>
+    <p>Porijeklo: {{ f.porijeklo }}</p>
+</div>
+{% endfor %}
+<button type="button" class="add-btn" onclick="addFormset('aktivna')">Dodaj još supstancu</button>
+</fieldset>
+
+<!-- ===== 7. Studije ===== -->
+<fieldset>
+<legend>7. Studije</legend>
+<p>{{ form.studije_toggle }} Postoje dokumenti</p>
+<div id="studijeBox" class="hidden sub-checkbox">
+<p>Popunite podatke o dostupnim kliničkim istraživanjima i naučnim dokazima.</p>
+{{ studije_formset.management_form }}
+{% for f in studije_formset %}
+<div class="study card">
+    <p>Naziv: {{ f.naziv }}</p>
+    <p>Tip: {{ f.tip }}<br><small>{{ f.tip.help_text }}</small></p>
+    <p>Godina: {{ f.godina }}</p>
+    <p>DOI: {{ f.doi }}<br><small>{{ f.doi.help_text }}</small></p>
+</div>
+{% endfor %}
+<button type="button" class="add-btn" onclick="addFormset('studije')">Dodaj još studiju</button>
+</div>
+</fieldset>
+
+<button type="submit">Sačuvaj</button>
+</form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggles = [
+        {checkbox: 'id_ogranicenja_toggle', box: 'ogranicenjaBox'},
+        {checkbox: 'id_mjere_toggle', box: 'mjereBox'},
+        {checkbox: 'id_upozorenja_toggle', box: 'upozorenjaBox'},
+        {checkbox: 'id_bse_toggle', box: 'bseBox'},
+        {checkbox: 'id_studije_toggle', box: 'studijeBox'},
+    ];
+    toggles.forEach(t => {
+        const cb = document.getElementById(t.checkbox);
+        const box = document.getElementById(t.box);
+        if(cb) cb.addEventListener('change', function() {
+            box.style.display = cb.checked ? 'block' : 'none';
+        });
+    });
+});
+
+function addFormset(type) {
+    let container = (type === 'studije') ? document.getElementById('studijeBox') : document.getElementById(type + '-container');
+    let totalForms = container.querySelector('input[name$="-TOTAL_FORMS"]');
+    let currentCount = parseInt(totalForms.value);
+    let emptyDiv = container.querySelector('.card').cloneNode(true);
+    emptyDiv.querySelectorAll('input, select').forEach(el => el.value = '');
+    container.insertBefore(emptyDiv, container.querySelector('.add-btn'));
+    totalForms.value = currentCount + 1;
+}
+</script>
+</body>
+</html>
