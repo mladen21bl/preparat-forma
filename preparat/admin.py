@@ -5,6 +5,7 @@ from .models import (
     AktivnaSupstanca,
     Studija,
 )
+# preparat/templatetags/form_tags.py
 
 
 class BiljnaDrogaInline(admin.TabularInline):
@@ -26,8 +27,3 @@ class StudijaInline(admin.TabularInline):
 class BiljniDodatakAdmin(admin.ModelAdmin):
     list_display = ("naziv", "oblik", "namena", "nacin_uzimanja")
     inlines = [BiljnaDrogaInline, AktivnaSupstancaInline, StudijaInline]
-
-
-admin.site.register(BiljnaDroga)
-admin.site.register(AktivnaSupstanca)
-admin.site.register(Studija)

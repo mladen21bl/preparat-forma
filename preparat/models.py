@@ -64,6 +64,7 @@ class BiljniDodatak(models.Model):
         ("poboljsava_snovi", "Poboljšava san"),
         ("opste_zdravlje", "Opšte zdravlje"),
         ("poboljsava_imunitet_probavu", "Imunitet + probava"),
+        ("podržava normalan nivo hemoglobina", "Podržava normalan nivo hemoglobina")
     ]
 
     JEDINICA_DOZA_CHOICES = [
@@ -89,7 +90,7 @@ class BiljniDodatak(models.Model):
 
     # ====== POLJA ======
 
-    naziv = models.CharField(max_length=255)
+    naziv = models.CharField(max_length=255, unique=True)
 
     oblik = models.CharField(max_length=50, choices=OBLIK_CHOICES)
     neto_kolicina = models.FloatField(null=True, blank=True)
@@ -189,7 +190,13 @@ class BiljnaDroga(models.Model):
     der = models.CharField(max_length=50, blank=True)
 
     standardizacija_proc = models.FloatField(null=True, blank=True)
-    standardizacija_supstanca = models.CharField(max_length=100, blank=True)
+    standardizacija_supstanca = models.ForeignKey(
+    "AktivnaSupstanca",
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name="standardizovane_droge",
+)
 
     zemlja_porijekla = models.CharField(max_length=50, choices=ZEMLJA_CHOICES, blank=True)
 
