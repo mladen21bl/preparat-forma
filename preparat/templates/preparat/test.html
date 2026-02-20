@@ -4,50 +4,170 @@
 <meta charset="UTF-8">
 <title>Prijava za registraciju dodatka prehrani test 2</title>
 <style>
-body { font-family: Arial, Helvetica, sans-serif; background-color: #f4f6f8; color: #222; margin:0; padding:0; }
-.container { max-width: 950px; margin:40px auto; background:#fff; padding:30px 40px; border:1px solid #ccc; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-h1 { font-size:28px; text-align:center; margin-bottom:5px; }
-.subtitle { text-align:center; font-size:14px; color:#555; margin-bottom:30px; }
-fieldset { border:1px solid #bbb; padding:20px; margin-bottom:25px; background-color:#eafcde; border-radius:6px; }
-legend { font-weight:bold; padding:0 10px; color:#050505; font-size:20px; }
-label { font-weight:bold; }
-p { margin-bottom:12px; }
-input[type="text"], input[type="number"], select { width:220px; padding:6px 10px; margin-top:3px; margin-bottom:6px; border:1px solid #ccc; border-radius:4px; font-size:13px; }
-input.invalid { border-color:red; background-color:#ffe6e6; }
-input[type="text"]:focus, input[type="number"]:focus, select:focus { border-color:#003366; outline:none; box-shadow:0 0 5px rgba(0,51,102,0.2);}
-.help-text { font-size:12px; color:#555; margin-top:3px;}
-.hidden { display:none; }
-button { background-color:#003366; color:#fff; border:none; padding:10px 25px; font-size:14px; cursor:pointer; border-radius:4px; }
-button:hover { background-color:#002244; }
-hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
-.checkbox-group { margin-left:15px; font-size:13px; }
-.flex-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap; }
-.note { font-size:12px; color:#555; margin-top:20px; text-align:center; }
-.add-btn { background-color:#006600; margin-top:10px; }
-.add-btn:hover { background-color:#004400; }
-.card { border:1px solid #aaa; padding:15px; margin-bottom:15px; border-radius:6px; background-color:#f0fff0; box-shadow:0 1px 4px rgba(0,0,0,0.05);}
-.card hr { border:none; border-top:1px dashed #ccc; margin:10px 0; }
+body { 
+    font-family: Arial, Helvetica, sans-serif; 
+    background-color: #f4f6f8; 
+    color: #222; 
+    margin:0; 
+    padding:0; 
+}
+
+.container { 
+    max-width: 950px; 
+    margin: 40px auto; 
+    background: #fff; 
+    padding: 30px 40px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1 { 
+    font-size: 28px; 
+    text-align: center; 
+    margin-bottom: 5px; 
+}
+
+.subtitle { 
+    text-align: center; 
+    font-size: 14px; 
+    color: #555; 
+    margin-bottom: 30px; 
+}
+
+fieldset { 
+    border: 1px solid #bbb; 
+    padding: 20px; 
+    margin-bottom: 25px; 
+    background-color: #eafcde; 
+    border-radius: 6px; 
+}
+
+legend { 
+    font-weight: bold; 
+    padding: 0 10px; 
+    color: #050505; 
+    font-size: 20px; 
+}
+
+label { 
+    font-weight: bold; 
+}
+
+p { 
+    margin-bottom: 12px; 
+}
+
+input[type="text"], input[type="number"], select { 
+    width: 220px; 
+    padding: 6px 10px; 
+    margin-top: 3px; 
+    margin-bottom: 6px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 13px; 
+}
+
+input:focus, select:focus { 
+    border-color: #003366; 
+    outline: none; 
+    box-shadow: 0 0 5px rgba(0,51,102,0.2);
+}
+
+input.invalid, select.invalid {
+    border-color: red;
+    background-color: #ffe6e6;
+}
+
+.help-text { 
+    font-size: 12px; 
+    color: #555; 
+    margin-top: 3px;
+}
+
+.hidden { 
+    display: none; 
+}
+
+button { 
+    background-color: #003366; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 25px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    border-radius: 4px; 
+}
+
+button:hover { 
+    background-color: #002244; 
+}
+
+hr { 
+    border: none; 
+    border-top: 1px dashed #ccc; 
+    margin: 15px 0; 
+}
+
+.checkbox-group { 
+    margin-left: 15px; 
+    font-size: 13px; 
+}
+
+.flex-row { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 8px; 
+    flex-wrap: wrap; 
+}
+
+.note { 
+    font-size: 12px; 
+    color: #555; 
+    margin-top: 20px; 
+    text-align: center; 
+}
+
+.add-btn { 
+    background-color: #006600; 
+    margin-top: 10px; 
+}
+
+.add-btn:hover { 
+    background-color: #004400; 
+}
+
+.card { 
+    border: 1px solid #aaa; 
+    padding: 15px; 
+    margin-bottom: 15px; 
+    border-radius: 6px; 
+    background-color: #f0fff0; 
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.card hr { 
+    border: none; 
+    border-top: 1px dashed #ccc; 
+    margin: 10px 0; 
+}
+
+.checkbox-group.invalid {
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #ffe6e6;
+}
 </style>
 </head>
 <body>
 <div class="container">
-
 <h1>Prijava za registraciju dodatka prehrani test 2</h1>
 <div class="subtitle">Simulacija postupka prijave – nastava iz farmakognozije</div>
 
-<form id="prijavaForm" method="POST" action="{% url 'prijava_test2' %}">
+<form id="prijavaForm" method="POST" action="{% url 'prijava_test2' %}" novalidate>
 {% csrf_token %}
-
-{% if greske %}
-<div style="color:red; margin-bottom:15px;">
-  <strong>Greške u obrascu:</strong>
-  <ul>
-    {% for field, _ in greske.items %}
-      <li>{{ field }}</li>
-    {% endfor %}
-  </ul>
-</div>
-{% endif %}
 
 <!-- 1. Osnovni podaci -->
 <fieldset>
@@ -57,28 +177,28 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 
 <p>Farmaceutski oblik:<br>
 <select name="oblik" required {% if greske.oblik %}class="invalid"{% endif %}>
-    <option value="">Odaberite oblik</option>
-    <optgroup label="Čvrsti oblici">
-        <option value="tablete">Tablete</option>
-        <option value="kapsule">Kapsule</option>
-        <option value="prah">Prah</option>
-        <option value="granule">Granule</option>
-        <option value="pastile">Pastile</option>
-    </optgroup>
-    <optgroup label="Polučvrsti oblici">
-        <option value="mast">Mast</option>
-        <option value="gel">Gel</option>
-        <option value="krem">Krem</option>
-    </optgroup>
-    <optgroup label="Tečni oblici">
-        <option value="sirup">Sirup</option>
-        <option value="oralni_rastvor">Oralni rastvor</option>
-        <option value="kapi">Kapi</option>
-        <option value="tinktura">Tinktura</option>
-        <option value="sprej">Sprej</option>
-        <option value="ulje">Ulje</option>
-        <option value="čaj">Čaj</option>
-    </optgroup>
+<option value="">Odaberite oblik</option>
+<optgroup label="Čvrsti oblici">
+<option value="tablete">Tablete</option>
+<option value="kapsule">Kapsule</option>
+<option value="prah">Prah</option>
+<option value="granule">Granule</option>
+<option value="pastile">Pastile</option>
+</optgroup>
+<optgroup label="Polučvrsti oblici">
+<option value="mast">Mast</option>
+<option value="gel">Gel</option>
+<option value="krem">Krem</option>
+</optgroup>
+<optgroup label="Tečni oblici">
+<option value="sirup">Sirup</option>
+<option value="oralni_rastvor">Oralni rastvor</option>
+<option value="kapi">Kapi</option>
+<option value="tinktura">Tinktura</option>
+<option value="sprej">Sprej</option>
+<option value="ulje">Ulje</option>
+<option value="čaj">Čaj</option>
+</optgroup>
 </select></p>
 
 <p>Neto količina pakovanja:<br>
@@ -90,15 +210,14 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 <option value="mg">mg</option>
 <option value="ml">ml</option>
 </select>
-</div>
-</p>
+</div></p>
 </fieldset>
 
 <!-- 2. Ambalaža i čuvanje -->
 <fieldset>
 <legend>2. Ambalaža i uslovi čuvanja</legend>
 <p>Tip ambalaže:<br>
-<select name="tip_ambalaze" required>
+<select name="tip_ambalaze" required {% if greske.tip_ambalaze %}class="invalid"{% endif %}>
 <option value="">Odaberite tip</option>
 <option value="bocica">Bočica</option>
 <option value="blister">Blister</option>
@@ -106,12 +225,12 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 <option value="pakiranje_caj">Pakovanje za čaj</option>
 <option value="tubica">Tubica</option>
 <option value="teglica">Teglica</option>
-<option value="Kartonska kutija">Kartonska kutija</option>
-<option value="Bočica sa kapaljkom">Bočica sa kapaljkom</option>
+<option value="kartonska_kutija">Kartonska kutija</option>
+<option value="bocica_kapaljka">Bočica sa kapaljkom</option>
 </select></p>
 
 <p>Materijal ambalaže:<br>
-<select name="materijal_ambalaze" required>
+<select name="materijal_ambalaze" required {% if greske.materijal_ambalaze %}class="invalid"{% endif %}>
 <option value="">Odaberite materijal</option>
 <option value="plastika">Plastika</option>
 <option value="staklo">Staklo</option>
@@ -121,17 +240,17 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 </select></p>
 
 <p>Minimalna temperatura čuvanja (°C):<br>
-<input type="number" name="temp_min" step="1" required></p>
+<input type="number" name="temp_min" step="1" required {% if greske.temp_min %}class="invalid"{% endif %}></p>
 
 <p>Maksimalna temperatura čuvanja (°C):<br>
-<input type="number" name="temp_max" step="1" required></p>
+<input type="number" name="temp_max" step="1" required {% if greske.temp_max %}class="invalid"{% endif %}></p>
 </fieldset>
 
 <!-- 3. Namena i način primjene -->
 <fieldset>
 <legend>3. Namjena i način primjene</legend>
 <p>Zdravstvene izjave:<br>
-<select name="namena" required>
+<select name="namena" required {% if greske.namena %}class="invalid"{% endif %}>
 <option value="">Odaberite namenu</option>
 <option value="poboljsava_imunitet">Poboljšava imunitet</option>
 <option value="poboljsava_probavu">Poboljšava probavu</option>
@@ -148,8 +267,8 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 
 <p>Preporučena dnevna doza:<br>
 <div class="flex-row">
-<input type="number" name="doza" min="0" step="any" required>
-<select name="jedinica_doza" required>
+<input type="number" name="doza" min="0" step="any" required {% if greske.doza %}class="invalid"{% endif %}>
+<select name="jedinica_doza" required {% if greske.jedinica_doza %}class="invalid"{% endif %}>
 <option value="">Odaberi jedinicu</option>
 <option value="kapsula">Kapsula</option>
 <option value="tableta">Tableta</option>
@@ -161,7 +280,7 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 </div></p>
 
 <p>Način primjene:<br>
-<select name="nacin_uzimanja" required>
+<select name="nacin_uzimanja" required {% if greske.nacin_uzimanja %}class="invalid"{% endif %}>
 <option value="">Odaberite način</option>
 <option value="oralno">Oralno</option>
 <option value="sublingvalno">Sublingvalno</option>
@@ -174,43 +293,41 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 <fieldset>
 <legend>4. Ograničenja i upozorenja</legend>
 <p>
-  <input type="checkbox" id="ogranicenjaToggle" onclick="toggleOgranicenja()">
-  Postoje ograničenja upotrebe
+<input type="checkbox" id="ogranicenjaToggle" onclick="toggleSection('ogranicenjaBox')"> Postoje ograničenja upotrebe
 </p>
 <div id="ogranicenjaBox" class="hidden checkbox-group">
-  <input type="checkbox" name="ogranicenja_djeca"> Djeca  
-  <input type="checkbox" name="ogranicenja_trudnice"> Trudnice  
-  <input type="checkbox" name="ogranicenja_dojilje"> Dojilje  
-  <input type="checkbox" name="ogranicenja_hronicni"> Osobe sa hroničnim zdravstvenim stanjima
+<input type="checkbox" name="ogranicenja_djeca" {% if greske.ogranicenja_djeca %}class="invalid"{% endif %}> Djeca
+<input type="checkbox" name="ogranicenja_trudnice" {% if greske.ogranicenja_trudnice %}class="invalid"{% endif %}> Trudnice
+<input type="checkbox" name="ogranicenja_dojilje" {% if greske.ogranicenja_dojilje %}class="invalid"{% endif %}> Dojilje
+<input type="checkbox" name="ogranicenja_hronicni" {% if greske.ogranicenja_hronicni %}class="invalid"{% endif %}> Osobe sa hroničnim zdravstvenim stanjima
 </div>
 
 <hr>
 
 <p>
-  <input type="checkbox" id="mjereToggle" onclick="toggleMjere()">
-  Mjere opreza
+<input type="checkbox" id="mjereToggle" onclick="toggleSection('mjereBox')"> Mjere opreza
 </p>
 <div id="mjereBox" class="hidden checkbox-group">
-  <input type="checkbox" name="mjera_djeca"> Čuvati van domašaja djece<br>
-  <input type="checkbox" name="mjera_doziranje"> Ne prekoračiti preporučenu dnevnu dozu<br>
-  <input type="checkbox" name="mjera_zamjena"> Dodatak prehrani nije zamjena za raznovrsnu i uravnoteženu ishranu<br>
-  <input type="checkbox" name="mjera_obrok"> Preporučuje se upotreba uz obrok<br>
-  <input type="checkbox" name="mjera_skladistenje"> Čuvati na suhom i tamnom mjestu<br>
+<input type="checkbox" name="mjera_djeca" {% if greske.mjera_djeca %}class="invalid"{% endif %}> Čuvati van domašaja djece<br>
+<input type="checkbox" name="mjera_doziranje" {% if greske.mjera_doziranje %}class="invalid"{% endif %}> Ne prekoračiti preporučenu dnevnu dozu<br>
+<input type="checkbox" name="mjera_zamjena" {% if greske.mjera_zamjena %}class="invalid"{% endif %}> Dodatak prehrani nije zamjena za raznovrsnu i uravnoteženu ishranu<br>
+<input type="checkbox" name="mjera_obrok" {% if greske.mjera_obrok %}class="invalid"{% endif %}> Preporučuje se upotreba uz obrok<br>
+<input type="checkbox" name="mjera_skladistenje" {% if greske.mjera_skladistenje %}class="invalid"{% endif %}> Čuvati na suhom i tamnom mjestu<br>
 </div>
 
 <hr>
 
 <p>
-  <input type="checkbox" id="upozorenjaToggle" onclick="toggleUpozorenja()">
-  Upozorenja
+<input type="checkbox" id="upozorenjaToggle" onclick="toggleSection('upozorenjaBox')"> Upozorenja
 </p>
 <div id="upozorenjaBox" class="hidden checkbox-group">
-  <input type="checkbox" name="upozorenje_alergije"> Proizvod može izazvati alergijske reakcije kod osjetljivih osoba<br>
-  <input type="checkbox" name="upozorenje_lijekovi"> Moguća interakcija sa lijekovima<br>
-  <input type="checkbox" name="upozorenje_gi"> Može izazvati gastrointestinalne smetnje<br>
-  <input type="checkbox" name="upozorenje_pritisak"> Može uticati na krvni pritisak<br>
-  <input type="checkbox" name="upozorenje_secer"> Može uticati na nivo šećera u krvi<br>
+<input type="checkbox" name="upozorenje_alergije" {% if greske.upozorenje_alergije %}class="invalid"{% endif %}> Proizvod može izazvati alergijske reakcije kod osjetljivih osoba<br>
+<input type="checkbox" name="upozorenje_lijekovi" {% if greske.upozorenje_lijekovi %}class="invalid"{% endif %}> Moguća interakcija sa lijekovima<br>
+<input type="checkbox" name="upozorenje_gi" {% if greske.upozorenje_gi %}class="invalid"{% endif %}> Može izazvati gastrointestinalne smetnje<br>
+<input type="checkbox" name="upozorenje_pritisak" {% if greske.upozorenje_pritisak %}class="invalid"{% endif %}> Može uticati na krvni pritisak<br>
+<input type="checkbox" name="upozorenje_secer" {% if greske.upozorenje_secer %}class="invalid"{% endif %}> Može uticati na nivo šećera u krvi<br>
 </div>
+
 <p class="note">Dodatak prehrani nije zamjena za raznovrsnu i uravnoteženu ishranu i zdrav način života.</p>
 </fieldset>
 
@@ -218,7 +335,7 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 <fieldset id="biljna-container">
 <legend>5. Biljna droga</legend>
 <div class="biljna-droga card">
-<p>Naziv biljke (SR): <input type="text" name="biljka_sr[]"></p>
+<p>Naziv biljke (SR): <input type="text" name="biljka_sr[]" {% if greske.biljne_droge %}class="invalid"{% endif %}></p>
 <p>Latinski naziv: <input type="text" name="biljka_lat[]"></p>
 <p>Dio biljke: <select name="dio_biljke[]">
 <option value="korijen">Korijen</option>
@@ -287,80 +404,164 @@ hr { border:none; border-top:1px dashed #ccc; margin:15px 0; }
 <input type="number" name="kolicina_aktivna[]" min="0" step="any">
 <select name="jedinica_aktivna[]">
 <option value="mg">mg</option>
-<option value="µg">µg</option>
 <option value="g">g</option>
 <option value="ml">ml</option>
-<option value="IU">IU</option>
+<option value="%">%</option>
 </select>
 </div></p>
-<p>Porijeklo: <select name="porijeklo_aktivna[]">
-<option value="biljna">Iz biljne droge</option>
-<option value="sintetska">Sintetska</option>
-<option value="mineralna">Mineralna</option>
-<option value="animalna">Animalna</option>
-</select></p>
 </div>
-<button type="button" class="add-btn" onclick="addAktivna()">Dodaj još aktivnu supstancu</button>
+<button type="button" class="add-btn" onclick="addAktivna()">Dodaj još supstanci</button>
 </fieldset>
 
-<!-- 7. BSE/TSE i GMO -->
+<!-- 7. Sertifikati -->
 <fieldset>
 <legend>7. Sertifikati BSE/TSE i GMO</legend>
+<div class="help-text">
+BSE (Bovine Spongiform Encephalopathy) i TSE (Transmissible Spongiform Encephalopathy) sertifikati potvrđuju da biljni dodatak ne sadrži rizik od priona životinjskog porijekla.<br>
+<br>GMO (Genetically Modified Organism) certifikat potvrđuje da proizvod ne sadrži genetski modificirane organizme.
+</div>
+
 <p>Stanje sertifikata:</p>
 <div class="flex-row">
 <input type="radio" name="bse_status" value="nije_potrebno" checked> Nije potrebno
-<input type="radio" name="bse_status" value="prilozeno" onclick="toggleBSE()"> Priloženo
+<input type="radio" name="bse_status" value="prilozeno"> Priloženo
 </div>
 <div id="bse_details" class="hidden">
-<p>Napomena / naziv dokumenta: <input type="text" name="bse_napomena"></p>
+<p>Napomena / naziv dokumenta (BSE/TSE ili GMO):<br>
+<input type="text" name="bse_napomena" placeholder="Unesite naziv dokumenta ili komentar"></p>
 </div>
 </fieldset>
 
 <!-- 8. Klinička istraživanja -->
 <fieldset>
 <legend>8. Klinička istraživanja i naučni dokazi</legend>
-<p><input type="checkbox" id="studiesToggle" onclick="toggleStudies()"> Postoje dokumenti</p>
+<p><input type="checkbox" id="studiesToggle" onclick="toggleSection('studiesBox')"> Postoje dokumenti</p>
 <div id="studiesBox" class="hidden">
 <div class="study-entry card">
 <p>Naziv studije: <input type="text" name="study_naziv[]"></p>
-<p>Tip studije: <select name="study_tip[]">
+<p>Tip studije: 
+<select name="study_tip[]">
 <option value="klinicko">Kliničko</option>
 <option value="laboratorijsko">Laboratorijsko / pre-kliničko</option>
 <option value="literatura">Literatura / review</option>
-</select></p>
-<p>Godina / referenca: <input type="text" name="study_godina[]"></p>
-<p>DOI broj: <input type="text" name="study_doi[]"></p>
+</select>
+</p>
+<div class="help-text">
+Kliničko: studije na ljudima.<br>
+Laboratorijsko / pre-kliničko: studije in vitro ili na životinjama.<br>
+Literatura / review: pregledni radovi i meta-analize.
 </div>
+<p>Godina / referenca: <input type="text" name="study_godina[]" placeholder="npr. 2021, Journal of Ethnopharmacology"></p>
+<p>DOI broj:<br>
+<input type="text" name="study_doi[]" placeholder="npr. 10.1016/j.jep.2021.114321">
+<div class="help-text">
+DOI (Digital Object Identifier) je jedinstveni identifikator naučne publikacije.
+</div>
+</p>
+</div>
+<button type="button" class="add-btn" onclick="addStudy()">Dodaj još studiju</button>
 </div>
 </fieldset>
 
-<button type="submit">Podnesi prijavu</button>
+<hr>
+<button type="submit">Pošalji prijavu</button>
 </form>
-
-<div class="note">
-Ovaj obrazac je edukativna simulacija postupka prijave dodatka ishrani biljnog porijekla.
-</div>
 </div>
 
 <script>
-// Toggle funkcije za checkbox sekcije
-function toggleOgranicenja(){document.getElementById('ogranicenjaBox').classList.toggle('hidden');}
-function toggleMjere(){document.getElementById('mjereBox').classList.toggle('hidden');}
-function toggleUpozorenja(){document.getElementById('upozorenjaBox').classList.toggle('hidden');}
-function toggleStudies(){document.getElementById('studiesBox').classList.toggle('hidden');}
-function toggleBSE(){document.getElementById('bse_details').classList.toggle('hidden');}
+// Toggle sekcije
+function toggleSection(id) { document.getElementById(id).classList.toggle("hidden"); }
 
-// Dodavanje novih biljnih droga i aktivnih supstanci
-function addBiljna(){
-    let container = document.getElementById('biljna-container');
-    let newCard = container.querySelector('.biljna-droga').cloneNode(true);
-    container.insertBefore(newCard, container.querySelector('.add-btn'));
+// Dodavanje novih sekcija
+function addBiljna() {
+    let container = document.getElementById("biljna-container");
+    let original = container.querySelector(".biljna-droga:last-of-type");
+    let clone = original.cloneNode(true);
+    clone.querySelectorAll("input").forEach(i => i.value = "");
+    clone.querySelectorAll("select").forEach(s => s.selectedIndex = 0);
+    container.insertBefore(clone, container.querySelector(".add-btn"));
 }
-function addAktivna(){
-    let container = document.getElementById('aktivna-container');
-    let newCard = container.querySelector('.aktivna-supstanca').cloneNode(true);
-    container.insertBefore(newCard, container.querySelector('.add-btn'));
+
+function addAktivna() {
+    let container = document.getElementById("aktivna-container");
+    let original = container.querySelector(".aktivna-supstanca:last-of-type");
+    let clone = original.cloneNode(true);
+    clone.querySelectorAll("input").forEach(i => i.value = "");
+    clone.querySelectorAll("select").forEach(s => s.selectedIndex = 0);
+    container.insertBefore(clone, container.querySelector(".add-btn"));
 }
+
+function addStudy() {
+    let container = document.getElementById("studiesBox");
+    let original = container.querySelector(".study-entry:last-of-type");
+    let clone = original.cloneNode(true);
+    clone.querySelectorAll("input").forEach(i => i.value = "");
+    clone.querySelectorAll("select").forEach(s => s.selectedIndex = 0);
+    container.insertBefore(clone, container.querySelector(".add-btn"));
+}
+
+// BSE radio
+document.querySelectorAll('input[name="bse_status"]').forEach(r => {
+    r.addEventListener("change", function() {
+        document.getElementById("bse_details").classList.toggle("hidden", this.value === "nije_potrebno");
+    });
+});
+
+let mjere = document.querySelectorAll('#mjereBox input[type="checkbox"]');
+if (mjere.length > 0 && !Array.from(mjere).some(cb => cb.checked)) {
+    // nijedno nije čekirano
+    valid = false;
+    mjere[0].parentElement.classList.add('invalid'); // ili neki border
+}
+
+// VALIDACIJA FORMULARA
+// VALIDACIJA FORMULARA
+document.getElementById('prijavaForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Sprečava refresh odmah
+
+    let valid = true;
+    this.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+
+    // Provera input polja i dropdownova
+    this.querySelectorAll('input[required], select[required]').forEach(function(el){
+        if(el.tagName.toLowerCase() === "select") {
+            if(!el.value) { 
+                el.classList.add('invalid'); 
+                valid = false; 
+            }
+        } else if(el.type === "text" || el.type === "number") {
+            if(!el.value.trim()) { 
+                el.classList.add('invalid'); 
+                valid = false; 
+            }
+        }
+    });
+
+    // Provera checkbox grupa – mora biti barem jedan čekiran
+    const checkboxGroups = ['ogranicenjaBox', 'mjereBox', 'upozorenjaBox', 'studiesBox'];
+    checkboxGroups.forEach(groupId => {
+        let group = document.getElementById(groupId);
+        if(group && group.classList.contains('hidden') === false) { // proverava samo vidljive
+            let checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            let anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+            if(!anyChecked) {
+                valid = false;
+                group.classList.add('invalid'); // dodaje border preko CSS-a
+            } else {
+                group.classList.remove('invalid');
+            }
+        }
+    });
+
+    if(!valid) {
+        const firstInvalid = this.querySelector('.invalid');
+        if(firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false; // ne šalje formu
+    }
+
+    // Ako je valid, submit može ići normalno
+    this.submit();
+});
 </script>
 </body>
 </html>

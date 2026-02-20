@@ -11,10 +11,6 @@ def index(request):
     return render(request, "preparat/index.html")
 
 
-def test2(request):
-    return render(request, "preparat/test2.html")
-
-
 def success_view(request):
     return render(request, "preparat/success.html")
 
