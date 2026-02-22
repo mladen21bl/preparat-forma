@@ -30,14 +30,15 @@ from .models import BiljniDodatak
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import BiljniDodatak
 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import BiljniDodatak
+
 def prijava_test2(request):
     context = {}
 
     if request.method == "POST":
         naziv = request.POST.get("naziv", "").strip()
-
         dodatak = get_object_or_404(BiljniDodatak, naziv=naziv)
-
         greske = {}
         uneseno = request.POST.copy()
 
@@ -51,10 +52,8 @@ def prijava_test2(request):
         def check_float(field):
             db_val = getattr(dodatak, field)
             post_val = uneseno.get(field)
-
             if (db_val is None or db_val == "") and not post_val:
                 return
-
             try:
                 if float(db_val) != float(post_val):
                     greske[field] = True
@@ -63,17 +62,10 @@ def prijava_test2(request):
 
         # ===== 1. OSNOVNA POLJA =====
         osnovna_polja = [
-            "naziv",
-            "oblik",
-            "jedinica_kolicina",
-            "tip_ambalaze",
-            "materijal_ambalaze",
-            "namena",
-            "jedinica_doza",
-            "nacin_uzimanja",
-            "bse_status",
+            "naziv", "oblik", "jedinica_kolicina",
+            "tip_ambalaze", "materijal_ambalaze",
+            "namena", "jedinica_doza", "nacin_uzimanja", "bse_status"
         ]
-
         for f in osnovna_polja:
             check(f)
 
@@ -82,24 +74,11 @@ def prijava_test2(request):
 
         # ===== 2. BOOLEAN POLJA =====
         bool_polja = [
-            "zastita_svjetlost",
-            "zastita_vlaga",
-            "ogranicenja_djeca",
-            "ogranicenja_trudnice",
-            "ogranicenja_dojilje",
-            "ogranicenja_hronicni",
-            "mjera_djeca",
-            "mjera_doziranje",
-            "mjera_zamjena",
-            "mjera_obrok",
-            "mjera_skladistenje",
-            "upozorenje_alergije",
-            "upozorenje_lijekovi",
-            "upozorenje_gi",
-            "upozorenje_pritisak",
-            "upozorenje_secer",
+            "zastita_svjetlost","zastita_vlaga",
+            "ogranicenja_djeca","ogranicenja_trudnice","ogranicenja_dojilje","ogranicenja_hronicni",
+            "mjera_djeca","mjera_doziranje","mjera_zamjena","mjera_obrok","mjera_skladistenje",
+            "upozorenje_alergije","upozorenje_lijekovi","upozorenje_gi","upozorenje_pritisak","upozorenje_secer"
         ]
-
         for f in bool_polja:
             db_val = getattr(dodatak, f) or False
             post_val = f in uneseno
@@ -109,7 +88,6 @@ def prijava_test2(request):
         # ===== 3. BILJNE DROGE =====
         biljke_post = uneseno.getlist("biljka_sr[]")
         biljke_db = list(dodatak.biljne_droge.all())
-
         if len(biljke_post) != len(biljke_db):
             greske["biljne_droge"] = True
         else:
@@ -121,7 +99,6 @@ def prijava_test2(request):
         # ===== 4. AKTIVNE SUPSTANCE =====
         aktivne_post = uneseno.getlist("aktivna_naziv[]")
         aktivne_db = list(dodatak.aktivne_supstance.all())
-
         if len(aktivne_post) != len(aktivne_db):
             greske["aktivne_supstance"] = True
         else:
@@ -133,7 +110,6 @@ def prijava_test2(request):
         # ===== 5. STUDIJE =====
         studije_post = uneseno.getlist("study_naziv[]")
         studije_db = list(dodatak.studije.all())
-
         if len(studije_post) != len(studije_db):
             greske["studije"] = True
         else:
