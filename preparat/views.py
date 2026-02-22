@@ -36,7 +36,6 @@ def prijava_test2(request):
     if request.method == "POST":
         naziv = request.POST.get("naziv", "").strip()
 
-        # Referentni objekat iz baze
         dodatak = get_object_or_404(BiljniDodatak, naziv=naziv)
 
         greske = {}
@@ -116,7 +115,8 @@ def prijava_test2(request):
         else:
             for i, droga in enumerate(biljke_db):
                 if (droga.biljka_sr or "").strip() != (biljke_post[i] or "").strip():
-                    greske[f"biljka_sr_{i}"] = True
+                    greske["biljne_droge"] = True
+                    break
 
         # ===== 4. AKTIVNE SUPSTANCE =====
         aktivne_post = uneseno.getlist("aktivna_naziv[]")
@@ -127,7 +127,8 @@ def prijava_test2(request):
         else:
             for i, sup in enumerate(aktivne_db):
                 if (sup.naziv or "").strip() != (aktivne_post[i] or "").strip():
-                    greske[f"aktivna_naziv_{i}"] = True
+                    greske["aktivne_supstance"] = True
+                    break
 
         # ===== 5. STUDIJE =====
         studije_post = uneseno.getlist("study_naziv[]")
@@ -138,7 +139,8 @@ def prijava_test2(request):
         else:
             for i, s in enumerate(studije_db):
                 if (s.naziv or "").strip() != (studije_post[i] or "").strip():
-                    greske[f"study_naziv_{i}"] = True
+                    greske["studije"] = True
+                    break
 
         # ===== 6. BSE NAPOMENA =====
         if dodatak.bse_status == "prilozeno":
@@ -147,7 +149,7 @@ def prijava_test2(request):
 
         # ===== REZULTAT =====
         if not greske:
-            return redirect("success")  # ili gde već vodiš po uspešnom unosu
+            return redirect("success")
 
         context["greske"] = greske
         context["uneseno"] = uneseno

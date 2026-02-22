@@ -112,6 +112,7 @@ hr {
 .checkbox-group { 
     margin-left: 15px; 
     font-size: 13px; 
+    font-weight: normal;
 }
 
 .flex-row { 
@@ -138,7 +139,7 @@ hr {
     background-color: #004400; 
 }
 
-.card { 
+.card {
     border: 1px solid #aaa; 
     padding: 15px; 
     margin-bottom: 15px; 
@@ -289,46 +290,37 @@ hr {
 </select></p>
 </fieldset>
 
-<!-- 4. Ograničenja i upozorenja -->
 <fieldset>
-<legend>4. Ograničenja i upozorenja</legend>
-<p>
-<input type="checkbox" id="ogranicenjaToggle" onclick="toggleSection('ogranicenjaBox')"> Postoje ograničenja upotrebe
-</p>
-<div id="ogranicenjaBox" class="hidden checkbox-group">
-<input type="checkbox" name="ogranicenja_djeca" {% if greske.ogranicenja_djeca %}class="invalid"{% endif %}> Djeca
-<input type="checkbox" name="ogranicenja_trudnice" {% if greske.ogranicenja_trudnice %}class="invalid"{% endif %}> Trudnice
-<input type="checkbox" name="ogranicenja_dojilje" {% if greske.ogranicenja_dojilje %}class="invalid"{% endif %}> Dojilje
-<input type="checkbox" name="ogranicenja_hronicni" {% if greske.ogranicenja_hronicni %}class="invalid"{% endif %}> Osobe sa hroničnim zdravstvenim stanjima
-</div>
+  <legend>4. Ograničenja i upozorenja</legend>
 
-<hr>
+  <!-- Postoje ograničenja upotrebe -->
+  <h3>Postoje ograničenja upotrebe</h3>
+<div id="ogranicenjaBox" class="checkbox-group {% if greske.ogranicenja_djeca or greske.ogranicenja_trudnice or greske.ogranicenja_dojilje or greske.ogranicenja_hronicni %}invalid{% endif %}">
+    <label><input type="checkbox" name="ogranicenja_djeca"> Djeca</label><br>
+    <label><input type="checkbox" name="ogranicenja_trudnice"> Trudnice</label><br>
+    <label><input type="checkbox" name="ogranicenja_dojilje"> Dojilje</label><br>
+    <label><input type="checkbox" name="ogranicenja_hronicni"> Hronični pacijenti</label>
+  </div>
 
-<p>
-<input type="checkbox" id="mjereToggle" onclick="toggleSection('mjereBox')"> Mjere opreza
-</p>
-<div id="mjereBox" class="hidden checkbox-group">
-<input type="checkbox" name="mjera_djeca" {% if greske.mjera_djeca %}class="invalid"{% endif %}> Čuvati van domašaja djece<br>
-<input type="checkbox" name="mjera_doziranje" {% if greske.mjera_doziranje %}class="invalid"{% endif %}> Ne prekoračiti preporučenu dnevnu dozu<br>
-<input type="checkbox" name="mjera_zamjena" {% if greske.mjera_zamjena %}class="invalid"{% endif %}> Dodatak prehrani nije zamjena za raznovrsnu i uravnoteženu ishranu<br>
-<input type="checkbox" name="mjera_obrok" {% if greske.mjera_obrok %}class="invalid"{% endif %}> Preporučuje se upotreba uz obrok<br>
-<input type="checkbox" name="mjera_skladistenje" {% if greske.mjera_skladistenje %}class="invalid"{% endif %}> Čuvati na suhom i tamnom mjestu<br>
-</div>
+  <!-- Mjere opreza -->
+  <h3>Mjere opreza</h3>
+  <div id="mjereBox" class="checkbox-group {% if greske.mjera_djeca or greske.mjera_doziranje or greske.mjera_zamjena or greske.mjera_obrok or greske.mjera_skladistenje %}invalid{% endif %}">
+    <label><input type="checkbox" name="mjera_djeca"> Čuvati van domašaja djece</label><br>
+    <label><input type="checkbox" name="mjera_doziranje"> Ne prekoračiti preporučenu dnevnu dozu</label><br>
+    <label><input type="checkbox" name="mjera_zamjena"> Nije zamjena za raznovrsnu i uravnoteženu ishranu</label><br>
+    <label><input type="checkbox" name="mjera_obrok"> Preporučuje se upotreba uz obrok</label><br>
+    <label><input type="checkbox" name="mjera_skladistenje"> Čuvati na suhom i tamnom mjestu</label>
+  </div>
 
-<hr>
-
-<p>
-<input type="checkbox" id="upozorenjaToggle" onclick="toggleSection('upozorenjaBox')"> Upozorenja
-</p>
-<div id="upozorenjaBox" class="hidden checkbox-group">
-<input type="checkbox" name="upozorenje_alergije" {% if greske.upozorenje_alergije %}class="invalid"{% endif %}> Proizvod može izazvati alergijske reakcije kod osjetljivih osoba<br>
-<input type="checkbox" name="upozorenje_lijekovi" {% if greske.upozorenje_lijekovi %}class="invalid"{% endif %}> Moguća interakcija sa lijekovima<br>
-<input type="checkbox" name="upozorenje_gi" {% if greske.upozorenje_gi %}class="invalid"{% endif %}> Može izazvati gastrointestinalne smetnje<br>
-<input type="checkbox" name="upozorenje_pritisak" {% if greske.upozorenje_pritisak %}class="invalid"{% endif %}> Može uticati na krvni pritisak<br>
-<input type="checkbox" name="upozorenje_secer" {% if greske.upozorenje_secer %}class="invalid"{% endif %}> Može uticati na nivo šećera u krvi<br>
-</div>
-
-<p class="note">Dodatak prehrani nije zamjena za raznovrsnu i uravnoteženu ishranu i zdrav način života.</p>
+  <!-- Upozorenja -->
+  <h3>Upozorenja</h3>
+  <div id="upozorenjaBox" class="checkbox-group {% if greske.upozorenje_alergije or greske.upozorenje_lijekovi or greske.upozorenje_gi or greske.upozorenje_pritisak or greske.upozorenje_secer %}invalid{% endif %}">
+    <label><input type="checkbox" name="upozorenje_alergije"> Može izazvati alergijske reakcije</label><br>
+    <label><input type="checkbox" name="upozorenje_lijekovi"> Moguća interakcija sa lijekovima</label><br>
+    <label><input type="checkbox" name="upozorenje_gi"> Može izazvati gastrointestinalne smetnje</label><br>
+    <label><input type="checkbox" name="upozorenje_pritisak"> Može uticati na krvni pritisak</label><br>
+    <label><input type="checkbox" name="upozorenje_secer"> Može uticati na nivo šećera u krvi</label>
+  </div>
 </fieldset>
 
 <!-- 5. Biljna droga -->
@@ -398,7 +390,10 @@ hr {
 <fieldset id="aktivna-container">
 <legend>6. Aktivne supstance</legend>
 <div class="aktivna-supstanca card">
-<p>Naziv supstance: <input type="text" name="aktivna_naziv[]"></p>
+<p>Naziv supstance: 
+<input type="text" name="aktivna_naziv[]" 
+{% if greske.aktivne_supstance %}class="invalid"{% endif %}>
+</p>
 <p>Hemijski oblik: <input type="text" name="hemijski_oblik[]"></p>
 <p>Količina:<div class="flex-row">
 <input type="number" name="kolicina_aktivna[]" min="0" step="any">
@@ -416,6 +411,8 @@ hr {
 <!-- 7. Sertifikati -->
 <fieldset>
 <legend>7. Sertifikati BSE/TSE i GMO</legend>
+
+<div class="card">
 <div class="help-text">
 BSE (Bovine Spongiform Encephalopathy) i TSE (Transmissible Spongiform Encephalopathy) sertifikati potvrđuju da biljni dodatak ne sadrži rizik od priona životinjskog porijekla.<br>
 <br>GMO (Genetically Modified Organism) certifikat potvrđuje da proizvod ne sadrži genetski modificirane organizme.
@@ -426,7 +423,7 @@ BSE (Bovine Spongiform Encephalopathy) i TSE (Transmissible Spongiform Encephalo
 <input type="radio" name="bse_status" value="nije_potrebno" checked> Nije potrebno
 <input type="radio" name="bse_status" value="prilozeno"> Priloženo
 </div>
-<div id="bse_details" class="hidden">
+
 <p>Napomena / naziv dokumenta (BSE/TSE ili GMO):<br>
 <input type="text" name="bse_napomena" placeholder="Unesite naziv dokumenta ili komentar"></p>
 </div>
@@ -435,9 +432,8 @@ BSE (Bovine Spongiform Encephalopathy) i TSE (Transmissible Spongiform Encephalo
 <!-- 8. Klinička istraživanja -->
 <fieldset>
 <legend>8. Klinička istraživanja i naučni dokazi</legend>
-<p><input type="checkbox" id="studiesToggle" onclick="toggleSection('studiesBox')"> Postoje dokumenti</p>
-<div id="studiesBox" class="hidden">
-<div class="study-entry card">
+
+<div class="card study-entry">
 <p>Naziv studije: <input type="text" name="study_naziv[]"></p>
 <p>Tip studije: 
 <select name="study_tip[]">
@@ -460,7 +456,7 @@ DOI (Digital Object Identifier) je jedinstveni identifikator naučne publikacije
 </p>
 </div>
 <button type="button" class="add-btn" onclick="addStudy()">Dodaj još studiju</button>
-</div>
+
 </fieldset>
 
 <hr>
@@ -470,7 +466,9 @@ DOI (Digital Object Identifier) je jedinstveni identifikator naučne publikacije
 
 <script>
 // Toggle sekcije
-function toggleSection(id) { document.getElementById(id).classList.toggle("hidden"); }
+function toggleSection(id) {
+    document.getElementById(id).classList.toggle("hidden");
+}
 
 // Dodavanje novih sekcija
 function addBiljna() {
@@ -492,75 +490,110 @@ function addAktivna() {
 }
 
 function addStudy() {
-    let container = document.getElementById("studiesBox");
+    let container = document.querySelector('fieldset:nth-of-type(8)'); // 8. fieldset = Kliničke studije
     let original = container.querySelector(".study-entry:last-of-type");
     let clone = original.cloneNode(true);
+    // očisti inpute
     clone.querySelectorAll("input").forEach(i => i.value = "");
     clone.querySelectorAll("select").forEach(s => s.selectedIndex = 0);
-    container.insertBefore(clone, container.querySelector(".add-btn"));
+    // ubaci pre dugmeta
+    let addBtn = container.querySelector(".add-btn");
+    container.insertBefore(clone, addBtn);
 }
 
-// BSE radio
+// BSE radio toggle
 document.querySelectorAll('input[name="bse_status"]').forEach(r => {
     r.addEventListener("change", function() {
-        document.getElementById("bse_details").classList.toggle("hidden", this.value === "nije_potrebno");
+        document.getElementById("bse_details")
+        .classList.toggle("hidden", this.value === "nije_potrebno");
     });
 });
 
-let mjere = document.querySelectorAll('#mjereBox input[type="checkbox"]');
-if (mjere.length > 0 && !Array.from(mjere).some(cb => cb.checked)) {
-    // nijedno nije čekirano
-    valid = false;
-    mjere[0].parentElement.classList.add('invalid'); // ili neki border
-}
-
-// VALIDACIJA FORMULARA
-// VALIDACIJA FORMULARA
-document.getElementById('prijavaForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Sprečava refresh odmah
-
+// ==========================================
+// KOMPLETNA VALIDACIJA ZA SVE SEGMENTE
+// ==========================================
+document.getElementById('prijavaForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    let form = this;
     let valid = true;
-    this.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
 
-    // Provera input polja i dropdownova
-    this.querySelectorAll('input[required], select[required]').forEach(function(el){
-        if(el.tagName.toLowerCase() === "select") {
-            if(!el.value) { 
-                el.classList.add('invalid'); 
-                valid = false; 
-            }
-        } else if(el.type === "text" || el.type === "number") {
-            if(!el.value.trim()) { 
-                el.classList.add('invalid'); 
-                valid = false; 
-            }
+    // ukloni stare invalid klase
+    form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+
+    // 1–3 REQUIRED POLJA
+    form.querySelectorAll('input[required], select[required]').forEach(el => {
+        if(el.tagName.toLowerCase() === "select" && !el.value){
+            el.classList.add('invalid'); valid = false;
+        } else if((el.type === "text" || el.type === "number") && !el.value.trim()){
+            el.classList.add('invalid'); valid = false;
         }
     });
 
-    // Provera checkbox grupa – mora biti barem jedan čekiran
-    const checkboxGroups = ['ogranicenjaBox', 'mjereBox', 'upozorenjaBox', 'studiesBox'];
-    checkboxGroups.forEach(groupId => {
-        let group = document.getElementById(groupId);
-        if(group && group.classList.contains('hidden') === false) { // proverava samo vidljive
-            let checkboxes = group.querySelectorAll('input[type="checkbox"]');
-            let anyChecked = Array.from(checkboxes).some(cb => cb.checked);
-            if(!anyChecked) {
-                valid = false;
-                group.classList.add('invalid'); // dodaje border preko CSS-a
-            } else {
-                group.classList.remove('invalid');
-            }
+    // 4. CHECKBOX GRUPE (mora bar 1 po grupi)
+    ['ogranicenjaBox','mjereBox','upozorenjaBox'].forEach(id=>{
+        let group = document.getElementById(id);
+        let checked = group.querySelectorAll('input[type="checkbox"]:checked');
+        if(checked.length === 0){
+            group.classList.add('invalid');
+            valid = false;
         }
     });
 
-    if(!valid) {
-        const firstInvalid = this.querySelector('.invalid');
-        if(firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return false; // ne šalje formu
+    // 5. BILJNA DROGA – validacija svakog input i select polja
+    document.querySelectorAll('.biljna-droga').forEach(card=>{
+        card.querySelectorAll('input, select').forEach(el=>{
+            if(el.tagName.toLowerCase() === "select" && (!el.value || el.value === "")){
+                el.classList.add('invalid'); valid = false;
+            } else if((el.type === "text" || el.type === "number") && !el.value.trim()){
+                el.classList.add('invalid'); valid = false;
+            }
+        });
+    });
+
+    // 6. AKTIVNE SUPSTANCE – validacija svih input i select polja
+    document.querySelectorAll('.aktivna-supstanca').forEach(card=>{
+        card.querySelectorAll('input, select').forEach(el=>{
+            if(el.tagName.toLowerCase() === "select" && (!el.value || el.value === "")){
+                el.classList.add('invalid'); valid = false;
+            } else if((el.type === "text" || el.type === "number") && !el.value.trim()){
+                el.classList.add('invalid'); valid = false;
+            }
+        });
+    });
+    // 7. BSE validacija
+    let bseStatus = form.querySelector('input[name="bse_status"]:checked').value;
+    if(bseStatus === "prilozeno"){
+        let napomena = form.querySelector('input[name="bse_napomena"]');
+        if(!napomena.value.trim()){
+            napomena.classList.add('invalid'); valid = false;
+        }
     }
 
-    // Ako je valid, submit može ići normalno
-    this.submit();
+    // 8. STUDIJE – validacija svakog polja ako je checkbox uključen
+    let studiesToggle = document.getElementById("studiesToggle");
+    if(studiesToggle.checked){
+        document.querySelectorAll('.study-entry').forEach(card=>{
+            card.querySelectorAll('input, select').forEach(el=>{
+                if(el.tagName.toLowerCase() === "select" && !el.value){
+                    el.classList.add('invalid'); valid = false;
+                }
+                if((el.type === "text" || el.type === "number") && !el.value.trim()){
+                    el.classList.add('invalid'); valid = false;
+                }
+            });
+        });
+    }
+
+    // scroll do prvog invalidnog elementa
+    if(!valid){
+        let firstInvalid = form.querySelector('.invalid');
+        if(firstInvalid){
+            firstInvalid.scrollIntoView({behavior:'smooth', block:'center'});
+        }
+        return false;
+    }
+
+    form.submit();
 });
 </script>
 </body>
