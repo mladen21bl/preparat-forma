@@ -108,6 +108,7 @@ class BiljniDodatak(models.Model):
     namena = models.CharField(max_length=100, choices=NAMENA_CHOICES)
     doza = models.FloatField(null=True, blank=True)
     jedinica_doza = models.CharField(max_length=20, choices=JEDINICA_DOZA_CHOICES, null=True, blank=True)
+    maksimalna_dnevna_doza = models.FloatField()
 
     nacin_uzimanja = models.CharField(max_length=50, choices=NACIN_UZIMANJA_CHOICES)
 
