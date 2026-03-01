@@ -40,6 +40,8 @@ def prijava_test2(request):
             "jedinica_doza": dodatak.jedinica_doza or "",
             "namena": dodatak.namena,
             "nacin_uzimanja": dodatak.nacin_uzimanja,
+            "tip_ambalaze":dodatak.tip_ambalaze,
+            "materijal_ambalaze":dodatak.materijal_ambalaze,
         }
         for polje, vrijednost in osnovna_polja.items():
             if data.get(polje) != vrijednost:
