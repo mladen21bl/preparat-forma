@@ -5,7 +5,7 @@
 <title>Prijava za registraciju dodatka prehrani test 2</title>
 <style>
 body { font-family: Arial, Helvetica, sans-serif; background-color: #f4f6f8; color: #222; margin:0; padding:0; }
-.container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px 40px; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+.container { max-width: 1050px; margin: 40px auto; background: #fff; padding: 30px 40px; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
 h1 { font-size: 28px; text-align: center; margin-bottom: 5px; }
 .subtitle { text-align: center; font-size: 14px; color: #555; margin-bottom: 30px; }
 fieldset { border: 1px solid #bbb; padding: 20px; margin-bottom: 25px; background-color: #eafcde; border-radius: 6px; }
@@ -179,6 +179,55 @@ input.warning {
 </select></p>
 </fieldset>
 
+<fieldset>
+<legend>Aktivni sastojci</legend>
+
+<table border="1" cellpadding="6" cellspacing="0" style="width:100%; border-collapse: collapse;">
+    <thead style="background-color:#eafcde;">
+        <tr>
+            <th>Aktivni sastojak</th>
+            <th>Količina u dozi (npr. 3 tablete)</th>
+            <th>% NRV*</th>
+            <th>Količina na 100 g</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" name="sastojak_0" placeholder="Suvi vodeni ekstrakt ploda godžija (Lycium barbarum L.) 4:1"></td>
+            <td><input type="text" name="kolicina_doz_0" placeholder="900 mg - 3 tablete"></td>
+            <td><input type="text" name="percent_nrv_0" placeholder="%"></td>
+            <td><input type="text" name="na_100g_0" placeholder="39,63 g"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="sastojak_1" placeholder="Suvi vodeno-etanolni ekstrakt korijena sladića (Glycyrrhiza glabra L.) 4:1"></td>
+            <td><input type="text" name="kolicina_doz_1" placeholder="112,5 mg - 3 tablete"></td>
+            <td><input type="text" name="percent_nrv_1" placeholder="%"></td>
+            <td><input type="text" name="na_100g_1" placeholder="4,95 g"></td>
+        </tr>
+        <!-- Dodaj više redova po potrebi -->
+    </tbody>
+</table>
+
+<div class="help-text">Unesite sve aktivne sastojke, količine u dozi, % NRV i količinu na 100 g. Vrijednosti unosi korisnik.</div>
+
+<button type="button" onclick="addRow()">Dodaj još sastojaka</button>
+</fieldset>
+
+<script>
+function addRow() {
+    const table = document.querySelector("table tbody");
+    const rowCount = table.rows.length;
+    const row = table.insertRow();
+    row.innerHTML = `
+        <td><input type="text" name="sastojak_${rowCount}" placeholder="Naziv sastojka"></td>
+        <td><input type="text" name="kolicina_doz_${rowCount}" placeholder="Količina u dozi"></td>
+        <td><input type="text" name="percent_nrv_${rowCount}" placeholder="% NRV"></td>
+        <td><input type="text" name="na_100g_${rowCount}" placeholder="Količina na 100 g"></td>
+    `;
+}
+</script>
+</fieldset>
+
 <!-- 4. Ograničenja i upozorenja -->
 <fieldset>
 <legend>4. Ograničenja i upozorenja</legend>
@@ -256,7 +305,7 @@ input.warning {
 
 <p>DER (Drug–Extract Ratio):<br>
 <input type="text" name="der" placeholder="npr. 5:1" value="{{ request.POST.der.0|default:'' }}" {% if greske.der_0 %}class="invalid"{% endif %}></p>
-
+<textarea name="poruka" id="poruka" rows="4" cols="50" placeholder="Ostavite komentar...."></textarea>
 <p>Standardizacija ekstrakta:<div class="flex-row">
 <input type="number" name="standardizacija_proc" min="0" step="any" style="width:80px;" value="{{ request.POST.standardizacija_proc.0|default:'' }}" {% if greske.standardizacija_proc_0 %}class="invalid"{% endif %}> %
 <select name="standardizacija_supstanca" {% if greske.standardizacija_supstanca_0 %}class="invalid"{% endif %}>
@@ -310,6 +359,70 @@ input.warning {
 </div></p>
 </div>
 <button type="button" class="add-btn" onclick="addAktivna()">Dodaj još supstanci</button>
+</fieldset>
+
+<fieldset>
+<legend>Energetsko-nutritivna tabela</legend>
+
+<table border="1" cellpadding="6" cellspacing="0" style="width:100%; border-collapse: collapse;">
+    <thead style="background-color:#e0f7fa;">
+        <tr>
+            <th>Naziv nutritivne vrednosti</th>
+            <th>Količina u dozi (npr. 3 tablete)</th>
+            <th>% NRV*</th>
+            <th>Količina na 100 g</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" name="nutrient_0" placeholder="Energija (kJ/kcal)"></td>
+            <td><input type="text" name="kolicina_doz_nutrient_0" placeholder="npr. 50 kJ / 12 kcal"></td>
+            <td><input type="text" name="percent_nrv_nutrient_0" placeholder="%"></td>
+            <td><input type="text" name="na_100g_nutrient_0" placeholder="1667 kJ / 400 kcal"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="nutrient_1" placeholder="Masti"></td>
+            <td><input type="text" name="kolicina_doz_nutrient_1" placeholder="npr. 0,5 g"></td>
+            <td><input type="text" name="percent_nrv_nutrient_1" placeholder="%"></td>
+            <td><input type="text" name="na_100g_nutrient_1" placeholder="6,25 g"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="nutrient_2" placeholder="Ugljeni hidrati"></td>
+            <td><input type="text" name="kolicina_doz_nutrient_2" placeholder="npr. 2 g"></td>
+            <td><input type="text" name="percent_nrv_nutrient_2" placeholder="%"></td>
+            <td><input type="text" name="na_100g_nutrient_2" placeholder="25 g"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="nutrient_3" placeholder="Proteini"></td>
+            <td><input type="text" name="kolicina_doz_nutrient_3" placeholder="npr. 0,3 g"></td>
+            <td><input type="text" name="percent_nrv_nutrient_3" placeholder="%"></td>
+            <td><input type="text" name="na_100g_nutrient_3" placeholder="3,75 g"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="nutrient_4" placeholder="So / Natrijum"></td>
+            <td><input type="text" name="kolicina_doz_nutrient_4" placeholder="npr. 0,01 g"></td>
+            <td><input type="text" name="percent_nrv_nutrient_4" placeholder="%"></td>
+            <td><input type="text" name="na_100g_nutrient_4" placeholder="0,125 g"></td>
+        </tr>
+        <!-- Dodaj više redova po potrebi -->
+    </tbody>
+</table>
+
+<button type="button" onclick="addNutrientRow()">Dodaj još nutritivnih vrednosti</button>
+
+<script>
+function addNutrientRow() {
+    const table = document.querySelector("fieldset:last-of-type tbody");
+    const rowCount = table.rows.length;
+    const row = table.insertRow();
+    row.innerHTML = `
+        <td><input type="text" name="nutrient_${rowCount}" placeholder="Naziv nutritivne vrednosti"></td>
+        <td><input type="text" name="kolicina_doz_nutrient_${rowCount}" placeholder="Količina u dozi"></td>
+        <td><input type="text" name="percent_nrv_nutrient_${rowCount}" placeholder="% NRV"></td>
+        <td><input type="text" name="na_100g_nutrient_${rowCount}" placeholder="Količina na 100 g"></td>
+    `;
+}
+</script>
 </fieldset>
 
 <!-- 7. BSE/TSE -->

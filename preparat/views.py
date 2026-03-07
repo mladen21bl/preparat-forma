@@ -14,6 +14,8 @@ def success_view(request):
     return render(request, "preparat/success.html")
 
 
+def test2(request):
+    return render(request, "preparat/test2.html")
 # =========================
 # GLAVNI EVALUACIONI VIEW
 # =========================
@@ -175,7 +177,6 @@ def prijava_test2(request):
         # --- 7. Redirect ili render ---
         if not greske:
             return redirect("success")
-
     context = {
         "dodatak": dodatak,
         "supstance": supstance,
