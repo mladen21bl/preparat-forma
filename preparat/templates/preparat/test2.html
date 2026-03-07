@@ -126,6 +126,70 @@ input.warning {
 
 <p>Maksimalna temperatura čuvanja (°C):<br>
 <input type="number" name="temp_max" step="1" required value="{{ request.POST.temp_max|default_if_none:'' }}" {% if greske.temp_max %}class="invalid"{% endif %}></p>
+<p style="display: flex; justify-content: space-between; align-items: center;">
+
+<div style="display: flex; flex-direction: column; gap: 0.5em;">
+    <label style="display: flex; justify-content: space-between; align-items: center; width: 200px;">
+        Čuvati zaštićeno od svjetlosti
+        <input type="checkbox" name="cuva_od_svjetlosti" {% if request.POST.cuva_od_svjetlosti %}checked{% endif %}>
+    </label>
+    <label style="display: flex; justify-content: space-between; align-items: center; width: 200px;">
+        Čuvati zaštićeno od vlage
+        <input type="checkbox" name="cuva_od_vlage" {% if request.POST.cuva_od_vlage %}checked{% endif %}>
+    </label>
+</div>
+<p></p>
+<legend>Serija i rok trajanja</legend>
+
+<p>
+    Serija proizvoda:<br>
+    <input type="text" name="serija" 
+           value="{{ request.POST.serija|default_if_none:'' }}" 
+           placeholder="Unesite seriju proizvoda">
+</p>
+
+<p>
+    Rok trajanja:<br>
+    <input type="date" name="rok_trajanja" 
+           value="{{ request.POST.rok_trajanja|default_if_none:'' }}">
+</p>
+
+<!-- 6. Proizvođač, uvoznik i distributer -->
+<fieldset>
+<legend>Proizvođač, uvoznik i distributer</legend>
+
+<p>
+    Proizvođač:<br>
+    <input type="text" name="proizvodjac" placeholder="Naziv i adresa proizvođača" 
+    value="{{ request.POST.proizvodjac|default_if_none:'' }}">
+</p>
+
+<p>
+    Uvoznik:<br>
+    <input type="text" name="uvoznik" placeholder="Naziv i adresa uvoznika" 
+    value="{{ request.POST.uvoznik|default_if_none:'' }}">
+</p>
+
+<p>
+    Distributer:<br>
+    <input type="text" name="distributer" placeholder="Naziv i adresa distributera" 
+    value="{{ request.POST.distributer|default_if_none:'' }}">
+</p>
+
+</fieldset>
+
+<!-- 7. Zemlja porijekla -->
+<fieldset>
+<legend>Zemlja porijekla</legend>
+
+<p>
+    Zemlja porijekla:<br>
+    <input type="text" name="zemlja_porijekla" placeholder="Unesite zemlju porijekla proizvoda" 
+    value="{{ request.POST.zemlja_porijekla|default_if_none:'' }}">
+</p>
+
+</fieldset>
+
 </fieldset>
 
 <!-- 3. Namena i način primjene -->
@@ -177,11 +241,22 @@ input.warning {
 <option value="lokalno" {% if request.POST.nacin_uzimanja == "lokalno" %}selected{% endif %}>Lokalno</option>
 <option value="inhalacija" {% if request.POST.nacin_uzimanja == "inhalacija" %}selected{% endif %}>Inhalacija</option>
 </select></p>
+<p>Detaljan opis načina primjene:<br>
+<textarea name="opis_uzimanja" rows="4" placeholder="Npr. Uzimati 1 tabletu tri puta dnevno uz obrok, najbolje ujutro i poslijepodne, uz dovoljnu količinu vode."
+          style="width:100%;">{{ request.POST.opis_uzimanja|default_if_none:'' }}</textarea>
+</p>
+<p>
+    Trajanje primjene / ograničenje trajanja:<br>
+    <input type="text" name="trajanje_primjene" 
+           placeholder="Ne preporučuje se uzimanje duže od 4 sedmice u kontinuitetu"
+           value="{{ request.POST.trajanje_primjene|default_if_none:'' }}">
+</p>
 </fieldset>
 
 <fieldset>
 <legend>Aktivni sastojci</legend>
 
+<!-- Tabela za aktivne sastojke -->
 <table border="1" cellpadding="6" cellspacing="0" style="width:100%; border-collapse: collapse;">
     <thead style="background-color:#eafcde;">
         <tr>
@@ -211,6 +286,15 @@ input.warning {
 <div class="help-text">Unesite sve aktivne sastojke, količine u dozi, % NRV i količinu na 100 g. Vrijednosti unosi korisnik.</div>
 
 <button type="button" onclick="addRow()">Dodaj još sastojaka</button>
+
+<!-- Prompt/textarea za sve sastojke (aktivni + pomoćni) -->
+<div style="margin-top:15px;">
+    <label for="all_ingredients">Svi sastojci (aktivni i pomoćni):</label><br>
+    <textarea id="all_ingredients" name="all_ingredients" rows="5" style="width:100%;" 
+        placeholder="Unesite sve sastojke kako su na etiketi, npr. Suvi vodeni ekstrakt ploda godžija 900 mg, mikrokristalna celuloza, stearinska kiselina, magnezijum-stearat..."></textarea>
+</div>
+
+
 </fieldset>
 
 <script>
@@ -226,7 +310,6 @@ function addRow() {
     `;
 }
 </script>
-</fieldset>
 
 <!-- 4. Ograničenja i upozorenja -->
 <fieldset>
@@ -256,6 +339,13 @@ function addRow() {
     <label><input type="checkbox" name="upozorenje_gi" {% if request.POST.upozorenje_gi %}checked{% endif %}> Može izazvati gastrointestinalne smetnje</label><br>
     <label><input type="checkbox" name="upozorenje_pritisak" {% if request.POST.upozorenje_pritisak %}checked{% endif %}> Može uticati na krvni pritisak</label><br>
     <label><input type="checkbox" name="upozorenje_secer" {% if request.POST.upozorenje_secer %}checked{% endif %}> Može uticati na nivo šećera u krvi</label>
+</div>
+
+<!-- Prompt / textarea za disclaimer -->
+<div style="margin-top:10px;">
+    <label for="disclaimer">Napomene i upozorenja:</label><br>
+    <textarea id="disclaimer" name="disclaimer" rows="6" style="width:100%;" 
+        placeholder="Unesite napomene i upozorenja sa etikete proizvoda, npr. Dodaci ishrani nisu zamjena za raznovrsnu ishranu, čuvati van domašaja djece, ne preporučuje se primjena kod trudnica i dojilja..."></textarea>
 </div>
 </fieldset>
 
